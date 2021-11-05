@@ -1,4 +1,5 @@
 import pygame
+import pathlib
 
 class Ship():
 
@@ -8,7 +9,8 @@ class Ship():
         self.ai_settings = ai_settings
 
         # Load the ship image and get its rect
-        self.image = pygame.image.load(r'C:\Users\samre\Alien_Invasion\images\ship1.bmp')
+        path = str(pathlib.Path(__file__).parent.resolve()) + '\images\ship1.bmp'
+        self.image = pygame.image.load(path, 'r+')
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
