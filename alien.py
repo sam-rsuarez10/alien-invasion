@@ -1,3 +1,4 @@
+
 import pygame
 import pathlib
 from pygame.sprite import Sprite
@@ -36,10 +37,16 @@ class Alien(Sprite):
             return True
         elif self.rect.left <= 0:
             return True
+        else:
+            return False
     # end def
     def update(self):
         ''' Move alien right or left '''
-        self.x += (self.ai_settings.alien_speed_factor * self.ai_settings.fleet_direction)
-        self.rect.x = self.x
+        if self.ai_settings.fleet_direction == 'right':
+            self.x += self.ai_settings.alien_speed_factor
+            self.rect.x = self.x
+        else:
+            self.x -= self.ai_settings.alien_speed_factor
+            self.rect.x = self.x
     # end def
 # end class

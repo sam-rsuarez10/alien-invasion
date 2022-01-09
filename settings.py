@@ -19,6 +19,10 @@ class Settings():
 
         # Alien Settings 
         self.alien_speed_factor = 1
-        self.fleet_drop_speed = 2
-        # 1 is moving right, -1 is moving left
-        self.fleet_direction = 1
+        self.fleet_drop_speed = 10
+        self.fleet_direction = 'right'
+    # end def
+
+    def set_fleet_direction(self, dir):
+        self.fleet_direction = dir
+    # end def
