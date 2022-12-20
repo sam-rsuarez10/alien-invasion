@@ -27,6 +27,7 @@ def check_keydown_events(event, ai_settings, screen, ship, bullets, aliens, stat
 
 def start_game(ai_settings, screen, aliens , ship, bullets, stats):
     ''' Sets initial parameters to start a new game '''
+    ai_settings.initialize_dynamic_settings()
     pygame.mouse.set_visible(False)
     # Reset game statistics
     stats.reset_stats()
@@ -51,6 +52,7 @@ def check_play_button(ai_settings, screen, stats, play_button, mouse_x, mouse_y,
     ''' Starts a new game when the player clicks Play '''
     button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
     if button_clicked and not stats.game_active:
+        # Reset the game settings
         start_game(ai_settings, screen, aliens, ship, bullets, stats)
 
 def check_events(ai_settings, screen, ship, bullets, stats, play_button, aliens):
@@ -93,8 +95,9 @@ def check_bullet_alien_colissions(bullets, aliens, ai_settings, screen, ship):
     colissions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 
     if len(aliens) == 0:
-        # Destroy existing bullets and create new fleet
+        # Destroy existing bullets, speed up game, and create new fleet
         bullets.empty()
+        ai_settings.increase_speed()
         create_fleet(ai_settings, screen, aliens, ship)
     # end if
 #end def
@@ -152,8 +155,8 @@ def change_fleet_direction(ai_settings, aliens):
     for alien in aliens.sprites():
         alien.rect.y += ai_settings.fleet_drop_speed
     # end for
-    if ai_settings.fleet_direction == 'right':
-        ai_settings.set_fleet_direction('left')     
+    if ai_settings.fleet_direction == 'right': # direction is set to right
+        ai_settings.set_fleet_direction('left') # set to left  
     else:
         ai_settings.set_fleet_direction('right')
 # end def
