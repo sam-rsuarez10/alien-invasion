@@ -69,7 +69,7 @@ def check_events(ai_settings, screen, ship, bullets, stats, play_button, aliens)
                 check_play_button(ai_settings, screen, stats, play_button, mouse_x, mouse_y, aliens, bullets, ship)
 
 
-def update_screen(ai_settings, screen, ship, bullets, aliens, play_button, stats):
+def update_screen(ai_settings, screen, ship, bullets, aliens, play_button, stats, sb):
     """Update images on the screen and flip to the new screen"""
 
     # Redraw the screen each gpass through the loop
@@ -79,6 +79,9 @@ def update_screen(ai_settings, screen, ship, bullets, aliens, play_button, stats
         bullet.draw_bullet()
     ship.blitme()
     aliens.draw(screen)
+
+    # Draw the score information
+    sb.show_score()
 
     # Draw the play button if the game is inactive
     if not stats.game_active:
