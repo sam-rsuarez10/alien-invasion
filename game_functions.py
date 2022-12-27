@@ -98,7 +98,8 @@ def check_bullet_alien_colissions(bullets, aliens, ai_settings, screen, ship, st
     colissions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 
     if colissions:
-        stats.score += ai_settings.alien_points
+        for aliens in colissions.values():
+            stats.score += ai_settings.alien_points * len(aliens)
         sb.prep_score()
 
     if len(aliens) == 0:
