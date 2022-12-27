@@ -31,8 +31,11 @@ class Settings():
         self.bullet_speed_factor = 3
         self.alien_speed_factor = 1
 
-        # fleet direction of 1 represents right; -1 represents left
         self.fleet_direction = 'right'
+
+        # Scoring 
+        self.alien_points = 50
+
 
     def set_fleet_direction(self, dir):
         self.fleet_direction = dir
