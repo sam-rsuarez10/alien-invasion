@@ -22,7 +22,8 @@ class GameStats():
             high_score = file.readline()
             return int(high_score)
 
-    def save_high_score(self, new_high_score):
+    def save_high_score(self):
         '''  Save high score in file'''
-        with open("high_score.txt", "w") as file:
-            file.write(str(new_high_score))
+        if self.high_score == self.score:
+            with open("high_score.txt", "w") as file:
+                file.write(str(self.score))
