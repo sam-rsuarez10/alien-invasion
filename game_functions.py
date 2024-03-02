@@ -240,3 +240,7 @@ def check_high_score(stats, sb):
     if stats.score > stats.high_score:
         stats.high_score = stats.score
         sb.prep_high_score()
+
+        # save high score in file
+        print("accessing high score file")
+        stats.save_high_score(stats.score)
